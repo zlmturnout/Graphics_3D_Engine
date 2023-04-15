@@ -3,7 +3,7 @@ from collections import namedtuple
 
 Point3D=namedtuple("Point3D",field_names=["x","y","z"])
 PixelPos=namedtuple("PixelPos",field_names=["x","y"])
-Sphere=namedtuple("sphere",field_names=["center","radius","color","ID"])
+Sphere=namedtuple("sphere",field_names=["center","radius","color","specular","reflective","ID"])
 Light=namedtuple("light",field_names=["type","intensity","position","ID"])
 
 class Scence(object):

@@ -5,6 +5,7 @@ import numpy as np
 from collections import namedtuple
 ...
 Color = namedtuple("Color", ["r", "g", "b", "alpha"])
+BackgroundColor=Color(0,0,0,0)
 Color.__doc__ = """A namedtuple that represents a color.
     It has 4 fields:
     r - red
@@ -13,7 +14,7 @@ Color.__doc__ = """A namedtuple that represents a color.
     alpha - the alpha channel
     """
 ...
-BackgroundColor=Color(255,255,255,0)
+
 
 def createIMGarray(w:int,h:int,channel:int=3):
     """Create a image 3D array for image data
