@@ -13,6 +13,7 @@ Color.__doc__ = """A namedtuple that represents a color.
     alpha - the alpha channel
     """
 ...
+BackgroundColor=Color(255,255,255,0)
 
 def createIMGarray(w:int,h:int,channel:int=3):
     """Create a image 3D array for image data
@@ -33,14 +34,14 @@ def put_pixel(img:np.array([]),x:int,y:int,color:Color):
         y (int): pixel num of height
         color (Color): _description_
     """
-    w,h,channel=img.shape
-    Sx=int(w/2+x)
-    Sy=int(h/2-y)
+    h,w,channel=img.shape
+    Sx=int(w/2+x)-1
+    Sy=int(h/2-y)-1
     r,g,b,a=tuple(color)
     if channel==3:
-        img[Sx][Sy]=(r,g,b)
+        img[Sy][Sx]=(r,g,b)
     elif channel==4:
-        img[Sx][Sy]=(r,g,b,a)
+        img[Sy][Sx]=(r,g,b,a)
 ...
 """canvas pos to viewport pos
     Field of view(FOV)
@@ -55,22 +56,19 @@ Cw=1280
 Ch=720
 
 ...
-def CanvasToViewport(x:int,y:int):
-    """
-
-    Args:
-        x (_type_): _description_
-        y (_type_): _description_
-    """
-    return x*Vw/Cw,y*Vh/Ch,d
 
 if __name__=="__main__":
     a=Color(r=255, g=0, b=0, alpha=255)
     im=Image.open("RayTracing/001.png")
     img_array=np.asarray(im).copy()
     
-    put_pixel(img_array,0,0,a)
-    im_cut=Image.fromarray(img_array[5:,0:],mode='RGB')
+    #put_pixel(img_array,0,0,a)
+    img_new=createIMGarray(w=128,h=72)
+    BG_Color=Color(255,255,255,0)
+    red=Color(255,0,0,255)
+    put_pixel(img_new,1,2,red)
+    put_pixel(img_new,0,0,BG_Color)
+    im_cut=Image.fromarray(img_new.astype('uint8')).convert('RGB')
     
     im_cut.show()
     
