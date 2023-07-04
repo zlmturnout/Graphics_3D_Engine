@@ -5,7 +5,7 @@ import numpy as np
 from PutPixel import put_pixel,createIMGarray,Color
 from Scence import Scence,Point3D,Sphere,Light
 
-BackgroundColor=Color(10,10,20,0.7)
+BackgroundColor=Color(10,100,20,0.7)
 def piontToArray(point:Point3D):
     """transform a 3D point to np.array for vector calculation
 
